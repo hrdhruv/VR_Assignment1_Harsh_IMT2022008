@@ -33,6 +33,6 @@ README.md                # Instructions
 
 ---
 
-## ❌ Common Issues
+## Common Issues
 - **Detection is poor?** → Adjust \`Canny\` thresholds in the code.  
 - **Wrong count?** → Check if coins are touching; use better lighting.

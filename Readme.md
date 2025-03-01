@@ -97,5 +97,4 @@ This will save the stitched panorama and keypoint-visualized images in the `outp
 - Worked best when images had distinct, well-distributed features.
 - Failed when images had little overlap or significant distortion.
 
-This project demonstrates the use of computer vision techniques for both object detection and image stitching, leveraging OpenCV's powerful functionalities.
 

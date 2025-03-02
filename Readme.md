@@ -46,44 +46,58 @@ This will save the outlined and segmented coin images in the `output` directory 
 
 ## Part 2: Creating a Stitched Panorama from Overlapping Images
 
-### Approach
+# Panorama Stitching using OpenCV
 
-1. **Preprocessing**
-   - Loaded multiple overlapping images from the `images` directory.
-   - Converted images to grayscale for feature detection.
-   
-2. **Feature Detection and Matching**
-   - Used ORB (Oriented FAST and Rotated BRIEF) to detect keypoints and descriptors in each image.
-   - Saved images with detected keypoints for visualization.
-   
-3. **Panorama Stitching**
-   - Used OpenCV's `Stitcher` to align and blend images into a seamless panorama.
-   - If stitching succeeded, saved the final panorama image.
-   
-4. **Final Enhancements**
-   - Detected and highlighted keypoints in the stitched panorama for better visualization.
-   
-### Output
-- The stitched panorama is saved as `output/panorama.jpg`.
-- Individual images with detected keypoints are saved as `output/keypoints_*.jpg`.
-- The final panorama with keypoints is saved as `output/panorama_with_keypoints.jpg`.
+## Overview
+This project implements an **image stitching algorithm** using **SIFT feature matching** and **homography estimation** to create a panorama from multiple images. It detects keypoints, matches features, aligns images, and blends them together to form a seamless stitched output.
 
-### How to Run
-#### Requirements
-- Python 3
-- OpenCV
-- NumPy
+## Features
+- Extracts **SIFT features** from images.
+- Uses **BFMatcher with Lowe’s ratio test** for keypoint matching.
+- Computes **homography using RANSAC** to align images.
+- Warps images using **cv2.warpPerspective**.
+- Removes **black borders** for a clean output.
+- Supports **visualization of matched keypoints**.
 
-#### Execution
-Ensure the `images` directory contains the overlapping images to be stitched. Then, run:
-
+## Requirements
+Ensure you have the following installed:
 ```bash
-python3 panaroma.py
+pip install opencv-python numpy
 ```
 
-This will save the stitched panorama and keypoint-visualized images in the `output` directory.
+## Usage
+### 1. Prepare Input Images
+- Place multiple overlapping images inside the `input/` directory.
+- Images should be numbered sequentially (e.g., `1.jpg`, `2.jpg`, `3.jpg`).
 
----
+### 2. Run the Script
+Execute the following command:
+```bash
+python panorama.py
+```
+
+### 3. View Output
+- The stitched panorama will be saved in the `output/` directory as `final_panorama.jpg`.
+- If visualization is enabled, intermediate match images will also be saved.
+
+## Code Explanation
+### `extract_features(img)`
+Extracts **SIFT keypoints** and descriptors from the given image.
+
+### `find_correspondences(kp1, kp2, des1, des2, ratio_thresh, ransac_thresh)`
+Finds matching keypoints using **BFMatcher** and computes **homography matrix**.
+
+### `stitch_images(image_list, match_ratio, ransac_thresh, visualize)`
+Aligns and stitches two images together based on their keypoint matches.
+
+### `generate_panorama(source_folder, save_folder, target_width, match_ratio, ransac_thresh, visualize)`
+Processes multiple images, stitches them sequentially, and saves the final panorama.
+
+## Notes
+- The input images should have **significant overlapping regions** for better stitching.
+- The script assumes images are named numerically (e.g., `1.jpg`, `2.jpg`).
+- For better results, images should have consistent **lighting and perspective**.
+
 
 ## Results and Observations
 

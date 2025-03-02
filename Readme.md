@@ -80,19 +80,6 @@ python panorama.py
 - The stitched panorama will be saved in the `output/` directory as `final_panorama.jpg`.
 - If visualization is enabled, intermediate match images will also be saved.
 
-## Code Explanation
-### `extract_features(img)`
-Extracts **SIFT keypoints** and descriptors from the given image.
-
-### `find_correspondences(kp1, kp2, des1, des2, ratio_thresh, ransac_thresh)`
-Finds matching keypoints using **BFMatcher** and computes **homography matrix**.
-
-### `stitch_images(image_list, match_ratio, ransac_thresh, visualize)`
-Aligns and stitches two images together based on their keypoint matches.
-
-### `generate_panorama(source_folder, save_folder, target_width, match_ratio, ransac_thresh, visualize)`
-Processes multiple images, stitches them sequentially, and saves the final panorama.
-
 ## Notes
 - The input images should have **significant overlapping regions** for better stitching.
 - The script assumes images are named numerically (e.g., `1.jpg`, `2.jpg`).

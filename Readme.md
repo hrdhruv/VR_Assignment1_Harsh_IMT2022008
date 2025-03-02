@@ -49,7 +49,7 @@ This will save the outlined and segmented coin images in the `output` directory 
 # Panorama Stitching using OpenCV
 
 ## Overview
-This project implements an **image stitching algorithm** using **SIFT feature matching** and **homography estimation** to create a panorama from multiple images. It detects keypoints, matches features, aligns images, and blends them together to form a seamless stitched output.
+This part implements an **image stitching algorithm** using **SIFT feature matching** and **homography estimation** to create a panorama from multiple images. It detects keypoints, matches features, aligns images, and blends them together to form a seamless stitched output.
 
 ## Features
 - Extracts **SIFT features** from images.
